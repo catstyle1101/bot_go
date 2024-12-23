@@ -22,7 +22,7 @@ func (p *Processor) doCmd(text string, chatID int, username string) error {
 	log.Printf("command: text=%q, username=%q", text, username)
 
 	if isAddCmd(text) {
-		return p.savePage(chatID, username, text)
+		return p.savePage(chatID, text, username)
 	}
 
 	switch text {
@@ -104,5 +104,5 @@ func isAddCmd(text string) bool {
 
 func isUrl(text string) bool {
 	u, err := url.Parse(text)
-	return err == nil && u.Scheme != "" && u.Host != ""
+	return err == nil && u.Host != ""
 }
